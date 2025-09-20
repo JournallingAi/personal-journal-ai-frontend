@@ -11,7 +11,6 @@ import {
   Chip,
 } from '@mui/material';
 import { Analytics as AnalyticsIcon, Psychology, CalendarToday } from '@mui/icons-material';
-import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:5001/api';
 
@@ -27,15 +26,29 @@ const Analytics = () => {
 
   const fetchAnalytics = async () => {
     try {
+      const token = localStorage.getItem('token');
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      };
+
       const [moodResponse, entriesResponse] = await Promise.all([
-        axios.get(`${API_BASE_URL}/analytics/mood`),
-        axios.get(`${API_BASE_URL}/entries`)
+        fetch(`${API_BASE_URL}/analytics/mood`, { headers }),
+        fetch(`${API_BASE_URL}/entries`, { headers })
       ]);
       
-      setMoodData(moodResponse.data);
-      setEntries(entriesResponse.data);
+      if (!moodResponse.ok || !entriesResponse.ok) {
+        throw new Error('Failed to fetch analytics data');
+      }
+
+      const moodData = await moodResponse.json();
+      const entriesData = await entriesResponse.json();
+      
+      setMoodData(moodData);
+      setEntries(entriesData);
     } catch (error) {
-      setError('Failed to fetch analytics');
+      console.error('Analytics fetch error:', error);
+      setError('Failed to fetch analytics. Please make sure you are logged in.');
     } finally {
       setLoading(false);
     }
@@ -58,7 +71,7 @@ const Analytics = () => {
   const calculateStats = () => {
     const totalEntries = entries.length;
     const entriesWithInsights = entries.filter(entry => entry.aiInsight).length;
-    const uniqueTags = new Set(entries.flatMap(entry => entry.tags)).size;
+    const uniqueTags = new Set(entries.flatMap(entry => entry.tags || [])).size;
     
     // Calculate most common mood
     const moodCounts = Object.entries(moodData);
@@ -245,4 +258,4 @@ const Analytics = () => {
   );
 };
 
-export default Analytics; 
+export default Analytics;
