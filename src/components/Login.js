@@ -14,7 +14,7 @@ import {
 import { Phone, Visibility, VisibilityOff, Google } from '@mui/icons-material';
 import { GoogleLogin } from '@react-oauth/google';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+const API_BASE_URL = 'https://personal-journal-ai-production.up.railway.app/api';
 
 const Login = ({ onLogin }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
