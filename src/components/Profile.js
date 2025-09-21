@@ -41,7 +41,7 @@ const getAuthHeaders = () => {
   };
 };
 
-const Profile = ({ onLogout }) => {
+const Profile = ({ onLogout, onProfileUpdate }) => {
   const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -126,6 +126,14 @@ const Profile = ({ onLogout }) => {
       setUser(response.data);
       setIsEditing(false);
       setSuccess('Profile updated successfully!');
+      
+      // Update localStorage with new user data
+      localStorage.setItem('user', JSON.stringify(response.data));
+      
+      // Notify parent component about profile update
+      if (onProfileUpdate) {
+        onProfileUpdate(response.data);
+      }
     } catch (error) {
       console.error('Error updating profile:', error);
       setError('Failed to update profile');

@@ -102,7 +102,7 @@ const reasonCategories = [
   { icon: <BeachAccess />, label: 'Nature', color: '#009688', bgColor: '#E0F2F1' },
 ];
 
-const Journal = () => {
+const Journal = ({ onProfileUpdate }) => {
   const [entries, setEntries] = useState([]);
   const [content, setContent] = useState('');
   const [selectedMood, setSelectedMood] = useState(null);
@@ -171,6 +171,15 @@ const Journal = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.location.reload();
+  };
+
+  // Handle profile update
+  const handleProfileUpdate = (updatedUser) => {
+    setUser(updatedUser);
+    // Also notify the parent App component
+    if (onProfileUpdate) {
+      onProfileUpdate(updatedUser);
+    }
   };
 
 
@@ -840,7 +849,7 @@ const Journal = () => {
           </Box>
           
           {user && (
-            <Profile onLogout={handleLogout} />
+            <Profile onLogout={handleLogout} onProfileUpdate={handleProfileUpdate} />
           )}
         </Box>
       </Drawer>

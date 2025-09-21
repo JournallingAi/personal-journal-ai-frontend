@@ -68,6 +68,10 @@ function App() {
     setUser(null);
   };
 
+  const handleProfileUpdate = (updatedUser) => {
+    setUser(updatedUser);
+  };
+
   if (loading) {
     return (
       <ThemeProvider theme={theme}>
@@ -112,7 +116,7 @@ function App() {
             <Header user={user} onLogout={handleLogout} />
             <Container maxWidth="lg" sx={{ py: 4 }}>
               <Routes>
-                <Route path="/" element={<Journal />} />
+                <Route path="/" element={<Journal onProfileUpdate={handleProfileUpdate} />} />
                 <Route path="/insights" element={<Insights />} />
                 <Route path="/analytics" element={<Analytics />} />
               </Routes>
