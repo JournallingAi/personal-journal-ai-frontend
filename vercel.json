@@ -28,6 +28,6 @@
     }
   ],
   "env": {
-    "REACT_APP_API_URL": "@api-url"
+    "REACT_APP_API_URL": "https://personal-journal-ai-production.up.railway.app/api"
   }
 } 
