@@ -51,6 +51,8 @@ const Profile = ({ onLogout, onProfileUpdate }) => {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
+  console.log('Profile component mounted with props:', { onLogout, onProfileUpdate });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -69,9 +71,11 @@ const Profile = ({ onLogout, onProfileUpdate }) => {
   const fetchUserProfile = async () => {
     try {
       setLoading(true);
+      console.log('Fetching user profile...');
       const response = await axios.get(`${API_BASE_URL}/auth/profile`, {
         headers: getAuthHeaders()
       });
+      console.log('Profile response:', response.data);
       setUser(response.data);
       setFormData({
         name: response.data.name || '',
