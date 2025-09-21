@@ -182,6 +182,9 @@ const Profile = ({ onLogout, onProfileUpdate }) => {
     );
   }
 
+  console.log('Profile component rendering with user:', user);
+  console.log('Profile component props:', { onLogout, onProfileUpdate });
+
   return (
     <Paper elevation={3} sx={{ p: 3, maxWidth: 400, mx: 'auto' }}>
       {/* Header */}
