@@ -44,8 +44,12 @@ const Login = ({ onLogin }) => {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccess('OTP sent successfully!');
+        setSuccess(data.demoMessage || 'OTP sent successfully!');
         setShowOtpInput(true);
+        // For demo purposes, auto-fill the OTP
+        if (data.demoOTP) {
+          setOtp(data.demoOTP);
+        }
       } else {
         setError(data.error || 'Failed to send OTP');
       }
