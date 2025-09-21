@@ -21,7 +21,7 @@ import {
 } from '@mui/icons-material';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://personal-journal-ai-production.up.railway.app/api';
 
 // Emoji mapping for different moods and insights
 const moodEmojis = {
