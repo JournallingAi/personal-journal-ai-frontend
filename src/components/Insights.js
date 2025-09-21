@@ -54,7 +54,12 @@ const Insights = () => {
 
   const fetchInsights = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/insights`);
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${API_BASE_URL}/insights`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       setInsights(response.data);
     } catch (error) {
       setError('Failed to fetch insights');
