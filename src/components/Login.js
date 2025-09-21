@@ -8,10 +8,9 @@ import {
   Divider,
   Alert,
   CircularProgress,
-  IconButton,
   InputAdornment
 } from '@mui/material';
-import { Phone, Visibility, VisibilityOff, Google } from '@mui/icons-material';
+import { Phone } from '@mui/icons-material';
 import { GoogleLogin } from '@react-oauth/google';
 
 const API_BASE_URL = 'https://personal-journal-ai-production.up.railway.app/api';

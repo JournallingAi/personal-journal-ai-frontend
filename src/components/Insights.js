@@ -14,10 +14,7 @@ import {
   LinearProgress,
 } from '@mui/material';
 import { 
-  Psychology, 
   TrendingUp, 
-  Lightbulb, 
-  Star,
   Favorite,
   EmojiEmotions,
   AutoAwesome

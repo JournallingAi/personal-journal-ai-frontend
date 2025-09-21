@@ -18,17 +18,9 @@ import {
   Fade,
   Zoom,
   Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  AppBar,
-  Toolbar,
   Dialog,
   DialogTitle,
   DialogContent,
-  Close,
-  Snackbar
 } from '@mui/material';
 import { 
   Psychology, 
@@ -54,8 +46,6 @@ import {
   Mic,
   MicOff,
   Delete,
-  Person,
-  Menu,
   Close as CloseIcon,
   BarChart
 } from '@mui/icons-material';
