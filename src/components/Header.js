@@ -81,7 +81,10 @@ const Header = () => {
           }}
         >
           <Person sx={{ fontSize: 28 }} />
-          {user?.name ? `${user.name.split(' ')[0]}'s Journal` : 'Your Journal'}
+          {(() => {
+            console.log('Header user object:', user);
+            return user?.name ? `${user.name.split(' ')[0]}'s Journal` : 'Your Journal';
+          })()}
         </Typography>
         
         <Box sx={{ display: 'flex', gap: 1 }}>
